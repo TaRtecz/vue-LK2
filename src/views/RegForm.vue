@@ -10,8 +10,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <label for="exampleInputEmail1">Телефон</label>
+                    <input type="text" class="form-control" id="Phone" placeholder="Телефон">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Пароль</label>
+                    <input type="password" class="form-control" id="Password1" placeholder="Пароль">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Загрузите Аватар</label>
+                    <input type="file" class="form-control-file" id="FileAvatar">
                 </div>
 
                 <div class="form-check">
@@ -19,9 +29,10 @@
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Регистрация</button>
 
             </form>
+            <router-link to="/login" class="badge badge-primary">Авторизация</router-link>
         </div>        
     </div>
   </div>
