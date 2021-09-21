@@ -30,7 +30,6 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Регистрация</button>
-
             </form>
             <router-link to="/login" class="badge badge-primary">Авторизация</router-link>
         </div>        
