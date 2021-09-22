@@ -7,7 +7,7 @@
                 <div v-show="step === 1" class="step">
                     <div class="form-group">
                         <label for="phone">Телефон</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Телефон">
+                        <input v-model="forgotForm.phone" type="text" class="form-control" id="phone" placeholder="Телефон">
                     </div>
 
                     <button @click="nextStep"  type="button" class="btn btn-primary">Отправить код</button>
@@ -16,7 +16,7 @@
                 <div v-show="step === 2" class="step">
                     <div class="form-group">
                         <label for="codeSMS">Код из СМС</label>
-                        <input type="text" class="form-control" id="codeSMS" placeholder="Код из СМС">
+                        <input v-model="forgotForm.codeSMS" type="text" class="form-control" id="codeSMS" placeholder="Код из СМС">
                         <p>Отправить код повторно, через {{timertoSend}} секунд</p>
                         <button type="button" class="codeResend btn mt-2" v-bind:disabled="isButtonDisabled">Отправить код повторно</button>
                     </div>
@@ -40,6 +40,10 @@ export default {
             step: 1,
             isButtonDisabled: true,
             timertoSend: 20,
+            forgotForm: {
+                phone: '',
+                codeSMS: '',
+            },
         }
       },
     methods: {
