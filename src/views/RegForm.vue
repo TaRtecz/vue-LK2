@@ -3,30 +3,25 @@
         <h1 class="text-center">{{ msg }}</h1>
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <form>
+            <form id="idregform" @submit="checkForm" action="" method="post">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Ваше имя</label>
-                    <input type="text" class="form-control" id="Name" placeholder="Ваше имя">
+                    <label for="name">Ваше имя</label>
+                    <input v-model="name" type="text" class="form-control" id="name" placeholder="Ваше имя">
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Телефон</label>
-                    <input type="text" class="form-control" id="Phone" placeholder="Телефон">
+                    <label for="phone">Телефон</label>
+                    <input v-model="phone" type="text" class="form-control" id="phone" placeholder="Телефон">
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Пароль</label>
-                    <input type="password" class="form-control" id="Password1" placeholder="Пароль">
+                    <label for="password1">Пароль</label>
+                    <input v-model="password1" type="password" class="form-control" id="password1" placeholder="Пароль">
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Загрузите Аватар</label>
-                    <input type="file" class="form-control-file" id="FileAvatar">
-                </div>
-
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <label for="fileAvatar">Загрузите Аватар</label>
+                    <input type="file" class="form-control-file" id="fileAvatar">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Регистрация</button>

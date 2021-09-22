@@ -13,7 +13,7 @@ const routes = [{
         // this generates a separate chunk (sigin.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import ('../views/RegForm.vue')
+            import ('../components/RegForm.vue')
     },
     {
         path: '/contact',
@@ -31,7 +31,16 @@ const routes = [{
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import ( /* webpackChunkName: "Login" */ '../views/Login.vue')
+            import ( /* webpackChunkName: "Login" */ '../components/Login.vue')
+    },
+    {
+        path: '/forgotpass',
+        name: 'ForgotPass',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import ( /* webpackChunkName: "Login" */ '../components/ForgotPass.vue')
     }
 ]
 
