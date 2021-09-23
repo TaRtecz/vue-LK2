@@ -23,13 +23,17 @@
             </form>
             <router-link to="/sigin" class="badge badge-primary mx-auto">Регистрация</router-link>
             <router-link to="/forgotpass" class="badge badge-primary">Забыли Пароль?</router-link>
+            <div id="app">
+              Info->{{ info }} set-->{{setLogined}}
+            </div>
         </div>        
     </div>
   </div>
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required, minLength } from 'vuelidate/lib/validators';
+import axios from 'axios';
 
 export default {
     name: 'Login',
@@ -40,17 +44,27 @@ export default {
             phone: '',
             password: '',
           },
+          info: null,
+          errors: [],
+          setLogined: '',
         }
     },
     methods: {
       login() {
-        let phone = this.phone 
-        let password = this.password
-        this.$store.dispatch('login', { phone, password })
-       .then(() => this.$router.push('https://backend-front-test.dev.echo-company.ru/api/auth/login'))
-       .catch(err => console.log(err))
+        axios.post('https://backend-front-test.dev.echo-company.ru/api/auth/login', this.authForm)
+        .then(response => (this.setLogined = response.data.token), response =>(this.info = response))
+        .catch(e => {
+          this.errors.push(e)
+        })
       },
     },
+
+    // mounted() {
+    // axios
+    //   .post('https://backend-front-test.dev.echo-company.ru/api/auth/login')
+    //   .then(response => (this.info = response));
+    // },
+
     validations: {
       authForm:{
         phone: {
