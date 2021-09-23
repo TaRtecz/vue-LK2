@@ -24,7 +24,7 @@
             <router-link to="/sigin" class="badge badge-primary mx-auto">Регистрация</router-link>
             <router-link to="/forgotpass" class="badge badge-primary">Забыли Пароль?</router-link>
             <div id="app">
-              Info->{{ info }} set-->{{setLogined}}
+              {{ info }}
             </div>
         </div>        
     </div>
@@ -46,13 +46,12 @@ export default {
           },
           info: null,
           errors: [],
-          setLogined: '',
         }
     },
     methods: {
       login() {
         axios.post('https://backend-front-test.dev.echo-company.ru/api/auth/login', this.authForm)
-        .then(response => (this.setLogined = response.data.token), response =>(this.info = response))
+        .then(response => (console.log(response.data.token)), response =>(this.info = response))
         .catch(e => {
           this.errors.push(e)
         })
