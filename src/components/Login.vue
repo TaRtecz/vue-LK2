@@ -26,13 +26,13 @@
             <div id="app">
               {{ info }}
             </div>
+            <p>token - {{token}}</p>
         </div>        
     </div>
   </div>
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators';
 import axios from 'axios';
 
 export default {
@@ -46,34 +46,28 @@ export default {
           },
           info: null,
           errors: [],
+          testadd: '12345',
         }
     },
     methods: {
       login() {
         axios.post('https://backend-front-test.dev.echo-company.ru/api/auth/login', this.authForm)
-        .then(response => (console.log(response.data.token)), response =>(this.info = response))
+        .then(response => (localStorage.setItem('token', response.data.token)), response =>(this.info = response),() => this.$router.push('/cabinet'))
         .catch(e => {
           this.errors.push(e)
         })
       },
     },
+    computed: {
+      token() {
+        return localStorage.getItem('token');
+    }
+},
 
     // mounted() {
     // axios
     //   .post('https://backend-front-test.dev.echo-company.ru/api/auth/login')
     //   .then(response => (this.info = response));
-    // },
-
-    validations: {
-      authForm:{
-        phone: {
-          required,
-          minLength: minLength(4)
-        },
-      }
-      
-       
-    },
 }
 </script>
 

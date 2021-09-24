@@ -3,12 +3,36 @@
     <router-link to="/">Главная</router-link> | 
     <router-link to="/sigin">Регистрация</router-link> | 
     <router-link to="/login">Авторизация</router-link> |
-    <router-link to="/contact">Контакты</router-link>
+    <router-link to="/contact">Контакты</router-link> | 
+    <router-link to="/cabinet"><span v-if="isLoggedIn">cabinet</span></router-link>
   </div>
   <router-view/>
 </template>
 
 
+
+
+<script>
+export default {
+    data() {
+        return {
+          user: '',
+          token: '',
+        }
+    },
+    methods: {
+      logout(){
+        localStorage.removeItem('token');
+        this.$router.push('/login')
+      },
+    },
+      computed: {
+        isLoggedIn () {
+          return localStorage.getItem('token');
+        }
+      },
+}
+</script>
 <style>
 #app {
   font-family: 'Roboto', sans-serif;
