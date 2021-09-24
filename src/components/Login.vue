@@ -3,15 +3,15 @@
         <h2 class="text-center">{{ msg }}</h2>
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <form id="idauthform" @submit.prevent="login" novalidate method="post">
+            <form id="idauthform" @submit.prevent="login" method="post">
                 <div class="form-group">
                     <label for="phone">Телефон</label>
-                    <input v-model="authForm.phone" type="text" class="form-control" id="phone" placeholder="Телефон">
+                    <input v-model="authForm.phone" type="text" class="form-control" id="phone" placeholder="Телефон" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Пароль</label>
-                    <input v-model="authForm.password" type="password" class="form-control" id="password" placeholder="Пароль">
+                    <input v-model="authForm.password" type="password" class="form-control" id="password" placeholder="Пароль" required>
                 </div>
 
                 <div class="form-check">
@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import { required, minLength } from 'vuelidate/lib/validators';
 import axios from 'axios';
 
 export default {
@@ -46,34 +45,27 @@ export default {
           },
           info: null,
           errors: [],
+          testadd: '12345',
         }
     },
     methods: {
       login() {
         axios.post('https://backend-front-test.dev.echo-company.ru/api/auth/login', this.authForm)
-        .then(response => (console.log(response.data.token)), response =>(this.info = response))
+        .then(response => (localStorage.setItem('token', response.data.token)), response =>(this.info = response), this.$router.push('/'))
         .catch(e => {
           this.errors.push(e)
         })
       },
     },
-
+    computed: {
+      isLoggedIn() {
+        return localStorage.getItem('token');
+    }
+},
     // mounted() {
     // axios
     //   .post('https://backend-front-test.dev.echo-company.ru/api/auth/login')
     //   .then(response => (this.info = response));
-    // },
-
-    validations: {
-      authForm:{
-        phone: {
-          required,
-          minLength: minLength(4)
-        },
-      }
-      
-       
-    },
 }
 </script>
 

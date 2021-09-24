@@ -6,6 +6,8 @@ import router from './router'
 
 createApp(App).use(router).mount('#app')
 
+// const token = localStorage.getItem('token');
+
 Vue.use(Vuelidate)
 
 

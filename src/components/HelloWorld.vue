@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-  
+    <div v-if="isLoggedIn">
+      Здравствуйте! Вы авторизованны.
+    </div>
   </div>
 </template>
 
@@ -15,6 +17,11 @@ export default {
           errors: []
         }
     },
+    computed: {
+      isLoggedIn () {
+          return localStorage.getItem('token');
+        }
+    }
 }
 </script>
 
